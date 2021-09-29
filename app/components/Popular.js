@@ -26,6 +26,25 @@ LanguageNav.propTypes = {
     onUpdateLanguage: PropTypes.func.isRequired,
 }
 
+function ReposGrid ({repos}) {
+    return(
+        <ul className='grid-space-around'>
+
+            <pre>{JSON.stringify(repos, null, 2)}</pre>
+
+            {repos.map((repos,index) => {
+                const { name, owner, html_url, stargazers_count, forks, open_issues } = repos
+                const {login, avatar_url } = owner
+            })}
+            
+        </ul>
+    )
+}
+
+ReposGrid.propTypes = {
+    repos: PropTypes.array.isRequired
+}
+
 export default class Popular extends React.Component {
     constructor(props){
         super(props)
@@ -89,7 +108,7 @@ export default class Popular extends React.Component {
                 />
             {this.isLoading() && <p>LOADING</p>}
             {error && <p>{error}</p>}
-            {repos[selectedLanguage] && <pre>{JSON.stringify(repos[selectedLanguage], null, 2)}</pre>}
+            {repos[selectedLanguage] && <ReposGrid repos = {repos[selectedLanguage]} />}
             </React.Fragment>
         )
     }
