@@ -55,7 +55,20 @@ export default class Popular extends React.Component {
         if(!this.state.repos[selectedLanguage]){
             fetchPopularRepos(selectedLanguage)
                 .then((data) => {
-                    this.setState(({ repos }) => ({
+
+/* 
+The variable being pass to setState is a prop, therefore the 
+need to wrap it in curly bracers before passing it into the arrow function
+*/
+                    
+                    this.setState(({repos}) => ({
+
+/*
+Because curly braces are used to denote the function’s body, 
+an arrow function that wants to return an object literal outside of a 
+function body must wrap the literal in parentheses. 
+*/
+
                         repos: {
                             ...repos,
                             [selectedLanguage]: data
