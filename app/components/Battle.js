@@ -19,7 +19,7 @@ function Instructions () {
                     <FaFighterJet className='bg-light' color='#727272' size={140} />
                 </li>
                 <li>
-                    <h3 className='header-sm'>Enter two Github users</h3>
+                    <h3 className='header-sm'>See the winner</h3>
                     <FaTrophy className='bg-light' color='rgb(255, 215, 0)' size={140} />
                 </li>
             </ol>
