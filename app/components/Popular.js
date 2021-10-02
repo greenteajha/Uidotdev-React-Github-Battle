@@ -35,7 +35,7 @@ function ReposGrid ({repos}) {
                 const {login, avatar_url } = owner
 
                 return(
-                    <li key={html_url} className='repo bg-light'>
+                    <li key={html_url} className='card bg-light'>
                         <h4 className='header-lg center-text'>
                             #{index + 1}
                         </h4>
@@ -154,7 +154,7 @@ function body must wrap the literal in parentheses.
                     onUpdateLanguage = {this.updateLanguage}
                 />
             {this.isLoading() && <p>LOADING</p>}
-            {error && <p>{error}</p>}
+            {error && <p className='center-text error'>{error}</p>}
             {repos[selectedLanguage] && <ReposGrid repos = {repos[selectedLanguage]} />}
             </React.Fragment>
         )
