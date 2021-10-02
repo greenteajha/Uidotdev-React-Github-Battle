@@ -131,6 +131,7 @@ export default class Battle extends React.Component {
     }
 
     handleSubmit(id, player) {
+        console.log(player)
         this.setState({
             [id]: player
         })
