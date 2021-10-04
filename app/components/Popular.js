@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { fetchPopularRepos } from "../utils/api"
 import { FaUser, FaStar, FaCodeBranch, FaExclamationTriangle, FaCode } from 'react-icons/fa'
 import Card from './Card'
+import Loading from "./Loading";
 
 function LanguageNav ({ selected, onUpdateLanguage }){
     const languages = ['All','JavaScript','Ruby','Java','CSS','Python']
@@ -150,7 +151,7 @@ function body must wrap the literal in parentheses.
                     selected = {selectedLanguage}
                     onUpdateLanguage = {this.updateLanguage}
                 />
-            {this.isLoading() && <p>LOADING</p>}
+            {this.isLoading() && <Loading text='Fetching results' speed='50'/>}
             {error && <p className='center-text error'>{error}</p>}
             {repos[selectedLanguage] && <ReposGrid repos = {repos[selectedLanguage]} />}
             </React.Fragment>
