@@ -6,17 +6,6 @@ import PropTypes from 'prop-types'
 import Loading from './Loading'
 
 class ProfileList extends React.Component{
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            hoveringLocation: false,
-            hoveringCompany: false
-        }
-
-        this.mouseOver = this.mouseOver.bind(this)
-        this.mouseOut = this.mouseOut.bind(this)
-    }
     
     render() {
 
