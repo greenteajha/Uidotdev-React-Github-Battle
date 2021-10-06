@@ -28,8 +28,7 @@ export default class Tooltip extends React.Component {
         super(props)
 
         this.state = {
-            hoveringLocation: false,
-            hoveringCompany: false
+            hovering: false
         }
 
         this.mouseOver = this.mouseOver.bind(this)
@@ -38,21 +37,33 @@ export default class Tooltip extends React.Component {
 
     mouseOver(id) {
         this.setState({
-            [id]: true
+            hovering: true
         })
     }
 
     mouseOut(id) {
         this.setState({
-            [id]: false
+            hovering: false
         })
     }
 
     render() {
-        return (
-            <div>
+        const { text, children } = this.props
+        const { hovering } = this.state
 
+        return (
+            <div 
+                onMouseOver={this.mouseOver}
+                onMouseOut={this.mouseOut}
+                style={styles.container}
+            >
+                { hovering === true && <div style={styles.tooltip}>{text}</div> }
+                { children }
             </div>
         )
     }
+}
+
+Tooltip.propTypes = {
+    text: PropTypes.string.isRequired
 }
