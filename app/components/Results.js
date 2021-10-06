@@ -5,35 +5,63 @@ import Card from './Card'
 import PropTypes from 'prop-types'
 import Loading from './Loading'
 
-function ProfileList ({ profile }) {
-    return (
-        <ul className='card-list'>
-            <li>
-                <FaUser color='rgb(239, 115, 155)' size={22} />
-                {profile.name}
-            </li>
-            {profile.location && (
+class ProfileList extends React.Component{
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            hoveringLocation: false,
+            hoveringCompany: false
+        }
+
+        this.mouseOver = this.mouseOver.bind(this)
+        this.mouseOut = this.mouseOut.bind(this)
+    }
+    
+    render() {
+
+        const { profile } = this.props
+        const { hoveringCompany, hoveringLocation } = this.state
+
+        return (
+            <ul className='card-list'>
                 <li>
-                    <FaCompass color='rgb(144, 115, 255)' size={22} />
-                    {profile.location}
+                    <FaUser color='rgb(239, 115, 155)' size={22} />
+                    {profile.name}
                 </li>
-            )}
-            {profile.company && (
+                {profile.location && (
+                    <li 
+                        onMouseOver={() => this.mouseOver('hoveringLocation')}
+                        onMouseOut={() => this.mouseOut('hoveringLocation')} 
+                        style={styles.container}
+                    >
+                        { hoveringLocation === true && <div style={styles.tooltip}>User's location</div> }
+                        <FaCompass color='rgb(144, 115, 255)' size={22} />
+                        {profile.location}
+                    </li>
+                )}
+                {profile.company && (
+                    <li 
+                        onMouseOver={() => this.mouseOver('hoveringCompany')}
+                        onMouseOut={() => this.mouseOut('hoveringCompany')}
+                        style={styles.container} 
+                    >
+                        { hoveringCompany === true && <div style={styles.tooltip}>User's company</div> }
+                        <FaBriefcase color='#795548' size={22} />
+                        {profile.company}
+                    </li>
+                )}
                 <li>
-                    <FaBriefcase color='#795548' size={22} />
-                    {profile.company}
+                    <FaUsers color='rgb(129, 195, 245)' size={22} />
+                    {profile.followers.toLocaleString()} followers
                 </li>
-            )}
-            <li>
-                <FaUsers color='rgb(129, 195, 245)' size={22} />
-                {profile.followers.toLocaleString()} followers
-            </li>
-            <li>
-                <FaUserFriends color='rgb(64, 183, 95)' size={22} />
-                {profile.following.toLocaleString()} following
-            </li>
-        </ul>
-    )
+                <li>
+                    <FaUserFriends color='rgb(64, 183, 95)' size={22} />
+                    {profile.following.toLocaleString()} following
+                </li>
+            </ul>
+        )
+    }
 }
 
 ProfileList.propTypes = {
