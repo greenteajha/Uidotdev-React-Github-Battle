@@ -201,7 +201,6 @@ export default class Battle extends React.Component {
                             }}
                         >
                             Battle
-
                         </Link>
                     )}
 
