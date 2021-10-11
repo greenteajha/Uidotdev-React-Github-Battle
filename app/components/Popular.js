@@ -146,7 +146,7 @@ function body must wrap the literal in parentheses.
                     selected = {selectedLanguage}
                     onUpdateLanguage = {this.updateLanguage}
                 />
-            {this.isLoading() && <Loading text='Fetching results' speed={50}/>}
+            {this.isLoading() && <Loading text='Fetching results' />}
             {error && <p className='center-text error'>{error}</p>}
             {repos[selectedLanguage] && <ReposGrid repos = {repos[selectedLanguage]} />}
             </React.Fragment>
